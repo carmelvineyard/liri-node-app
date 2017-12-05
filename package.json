@@ -1,0 +1,33 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "file to document liri-node-app",
+  "main": "liri.js",
+  "dependencies": {
+    "node-spotify-api": "^1.0.7",
+    "twitter": "^1.7.1",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmelvineyard/liri-node-app.git"
+  },
+  "keywords": [
+    "siri",
+    "node",
+    "api",
+    "twitter",
+    "spotify",
+    "omdb"
+  ],
+  "author": "Carmel Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carmelvineyard/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/carmelvineyard/liri-node-app#readme"
+}

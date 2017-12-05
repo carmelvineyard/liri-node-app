@@ -46,7 +46,7 @@ request(queryUrl, function(error, response, body) {
 
 	if (!error && response.statusCode === 200) {
 		// Parse the body of the site and get the information required
-		console.log("Release Year: " + JSON.parse(body).Year + "  Actors: " + JSON.parse(body).Actors +  "  Rotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "  IMDB rating: " + JSON.parse(body).imdbRating);
+		console.log("Title: " + JSON.parse(body).Title + "  Release Year: " + JSON.parse(body).Year + "  Actors: " + JSON.parse(body).Actors +  "  Rotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "  IMDB rating: " + JSON.parse(body).imdbRating);
 	}
 });
 

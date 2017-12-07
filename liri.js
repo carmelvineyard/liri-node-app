@@ -39,7 +39,7 @@ function liri(command) {
 		if (nodeArgs.length === 3) {  // No search term entered
 
 			//Liri notes that no movie was searched and suggests the default:
-			console.log("----------------------------\nLooks like someone is indecisive today. May I suggest Mr. Nobody?\n----------------------------");
+			console.log("----------------------------\nLooks like someone is feeling indecisive today. May I suggest Mr. Nobody?\n----------------------------");
 			
 			//A query to run by default if no search terms were entered:
 			var defaultQueryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
@@ -165,34 +165,87 @@ function liri(command) {
 			  secret: '5b4f1ed5c77945c8affabe9588c53702'
 			});
 
-			spotify.search({ type: 'track', query: 'All the small things', limit: 1 }, function(err, data) {
+		// variable to hold user input:
+			var songName = "";
+
+		// Look for search terms:
+			//if no search term entered:
+			if (nodeArgs.length === 3) {  
+				spotify.search({ type: 'track', query: 'All the small things', limit: 1 }, function(err, data) {
 				
-			  if (err) {
-			    return console.log('Error occurred: ' + err);
-			  }
+				
+				if (err) {
+					return console.log('Error occurred: ' + err);
+				}
 
-			//simplifying access to the data within the maze of objects and arrays returned by Spotify
-			var info = data.tracks.items[0];
-			var trackName = info.name;
-			var previewLink = info.external_urls.spotify;
-			var artist = info.artists[0].name; 
-			var album = info.album.name;
-			
-			// console for debugging
-			//console.log(artist);
-			
-			// Access and display information:
-			console.log("Name: " + trackName + "\nArtist: " + artist + "\nAlbum: " + album + "\nSpotify Link: " + previewLink); 
-			
-		});
+				if (!err) {
+					//simplifying access to the data within the maze of objects and arrays returned by Spotify
+					var info = data.tracks.items[0];
+					var trackName = info.name;
+					var previewLink = info.external_urls.spotify;
+					var artist = info.artists[0].name; 
+					var album = info.album.name;
 
 
+					//Liri notes that no movie was searched and suggests the default:
+					console.log("----------------------------\nLooks like someone is feeling indecisive today. May I suggest All The Small Things?\n----------------------------");
+				
+					// Access and display information:
+					console.log("Name: " + trackName + "\nArtist: " + artist + "\nAlbum: " + album + "\nSpotify Link: " + previewLink); 
+				} // end if(!err)
+				
+				});  // end of search function
+			// end if no search term entered
+			} else {
+				for (var i = 3; i < nodeArgs.length; i++) {
+					if (i > 3 && i < nodeArgs.length) {
+						songName = songName + "+" + nodeArgs[i];
+					}
+					else {
+						songName += nodeArgs[i];
+					}
+				} // for loop end
+
+				spotify.search({ type: 'track', query: songName, limit: 1 }, function(err, data) {
+						
+					if (err) {
+						return console.log('Error occurred: ' + err);
+					}
+
+					if (!err){
+						// console for debugging
+						//console.log(artist);
+
+						//simplifying access to the data within the maze of objects and arrays returned by Spotify
+						var info = data.tracks.items[0];
+						var trackName = info.name;
+						var previewLink = info.external_urls.spotify;
+						var artist = info.artists[0].name; 
+						var album = info.album.name;
+
+
+						//Liri is friendly:
+						console.log("----------------------------\nHere's your song!\n----------------------------");
+	
+						// Access and display information:
+						console.log("Name: " + trackName + "\nArtist: " + artist + "\nAlbum: " + album + "\nSpotify Link: " + previewLink); 
+					
+					}  //if (!err) end
+				
+				});// search function end
+			
+			}	//else end
+		
+		 // end else if spotify-this-song
 
 		//**********spotify-this-song ends**********
+
+		//********* do-what-it-says begins*********
+
 	}	else if (command === "do-what-it-says") {
 
 
-		//********* do-what-it-says begins*********
+		
 		console.log("do-what-it-says is coming soon!");
 
 		//********* do-what-it-says ends*********

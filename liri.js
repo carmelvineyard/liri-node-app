@@ -152,12 +152,46 @@ function liri(command) {
 
 		//**********spotify-this-song begins********
 	}	else if (command === "spotify-this-song") {
-		
+		// encouraging messages are always good and get me through:
+		//console.log("You got this!!  <3");
 
-		console.log("spotify-this-song is coming soon!");
+		//tell the program it's going to use the node-spotify-api npm package:
+			var Spotify = require('node-spotify-api');
+
+		// and feel sad that you couldn't get the keys to work from inside keys.js, not for lack of trying:
+		// FUTURE TODO: MAKE THIS SECURE!	
+			var spotify = new Spotify({
+			  id: 'cc506cc8bb1549ebb45087c755345d0a',
+			  secret: '5b4f1ed5c77945c8affabe9588c53702'
+			});
+
+			spotify.search({ type: 'track', query: 'All the small things', limit: 1 }, function(err, data) {
+				
+			  if (err) {
+			    return console.log('Error occurred: ' + err);
+			  }
+
+			//simplifying access to the data within the maze of objects and arrays returned by Spotify
+			var info = data.tracks.items[0];
+			var trackName = info.name;
+			var previewLink = info.external_urls.spotify;
+			var artist = info.artists[0].name; 
+			var album = info.album.name;
+			
+			// console for debugging
+			//console.log(artist);
+			
+			// Access and display information:
+			console.log("Name: " + trackName + "\nArtist: " + artist + "\nAlbum: " + album + "\nSpotify Link: " + previewLink); 
+			
+		});
+
+
 
 		//**********spotify-this-song ends**********
 	}	else if (command === "do-what-it-says") {
+
+
 		//********* do-what-it-says begins*********
 		console.log("do-what-it-says is coming soon!");
 

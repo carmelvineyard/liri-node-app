@@ -24,9 +24,9 @@ var command = process.argv[2];
 var nodeArgs = process.argv;
 
 
-
 function liri(command) {
-	console.log("Command: " + command);
+	// console for debugging:
+	//console.log("Command: " + command);
 	if (command === "movie-this") {
 		//  *******movie-this begins**************
 
@@ -39,7 +39,7 @@ function liri(command) {
 		if (nodeArgs.length === 3) {  // No search term entered
 
 			//Liri notes that no movie was searched and suggests the default:
-			console.log("----------------------------\nLooks like someone is feeling indecisive today. May I suggest Mr. Nobody?\n----------------------------");
+			console.log("----------------------------\nWhat? You want me to choose the song? \nWell, then, I suggest Mr. Nobody. Enjoy!\n----------------------------");
 			
 			//A query to run by default if no search terms were entered:
 			var defaultQueryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
@@ -60,8 +60,6 @@ function liri(command) {
 
 		} else { // A search term was entered
 
-			//Liri is friendly:
-			console.log("----------------------------\nEnjoy your movie!\n----------------------------");
 			
 			//Loop through all the words in the node argument and get them stored in the movieName variable
 			for (var i = 3; i < nodeArgs.length; i++) {
@@ -84,8 +82,43 @@ function liri(command) {
 				// if the request is successful...
 
 				if (!error && response.statusCode === 200) {
-					// Parse the body of the site and display the information required
-					console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+					if (process.argv[3] === "princess" && process.argv[4] === "bride") {
+						console.log("----------------------------\nInconceivable!\n----------------------------");
+					
+						// Parse the body of the site and display the information required
+						console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+				
+					} else if (process.argv[3] === "space" && process.argv[4] === "jam") {
+						console.log("----------------------------\nCome on and slam\nand welcome to the jam\n----------------------------");
+					
+						// Parse the body of the site and display the information required
+						console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+				
+					} else if (process.argv[3] === "star" && process.argv[4] === "wars") {
+						console.log("----------------------------\nMay the Force be with you\n----------------------------");
+					
+						// Parse the body of the site and display the information required
+						console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+				
+					} else if (process.argv[3] === "zombieland") {
+						console.log("----------------------------\nRule #1: Cardio.\n----------------------------");
+					
+						// Parse the body of the site and display the information required
+						console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+				
+					} else if (process.argv[3] === "monty" && process.argv[4] === "python") {
+						console.log("----------------------------\nAnd now for something completely different:\n----------------------------");
+					
+						// Parse the body of the site and display the information required
+						console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+				
+					} else {
+						//Liri is friendly:
+						console.log("----------------------------\nEnjoy your movie!\n----------------------------");
+				
+						// Parse the body of the site and display the information required
+						console.log("Title: " + JSON.parse(body).Title + "\nRelease Year: " + JSON.parse(body).Year + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors +  "\nRotten Tomatoes rating: " + JSON.parse(body)['Ratings'][1]['Value'][0] + "\nIMDB rating: " + JSON.parse(body).imdbRating);
+					}
 				}
 
 
@@ -143,7 +176,7 @@ function liri(command) {
 		  	// or apologize to the user
 		  	console.log("Oh, bother. Something is amiss. Sorry about that!")
 
-		  	// and then ask what went wrong.
+		  	// and find out what went wrong.
 		  	console.log(error);
 		  }
 		});
@@ -171,7 +204,7 @@ function liri(command) {
 		// Look for search terms:
 			//if no search term entered:
 			if (nodeArgs.length === 3) {  
-				spotify.search({ type: 'track', query: 'All the small things', limit: 1 }, function(err, data) {
+				spotify.search({ type: 'track', query: 'the+sign+ace+of+base', limit: 1 }, function(err, data) {
 				
 				
 				if (err) {
@@ -188,7 +221,7 @@ function liri(command) {
 
 
 					//Liri notes that no movie was searched and suggests the default:
-					console.log("----------------------------\nLooks like someone is feeling indecisive today. May I suggest All The Small Things?\n----------------------------");
+					console.log("----------------------------\nLooks like I get to choose the song! \nHow about The Sign? \nI'm also a fan of Beautiful Life.\n----------------------------");
 				
 					// Access and display information:
 					console.log("Name: " + trackName + "\nArtist: " + artist + "\nAlbum: " + album + "\nSpotify Link: " + previewLink); 
@@ -243,32 +276,71 @@ function liri(command) {
 		//********* do-what-it-says begins*********
 
 	}	else if (command === "do-what-it-says") {
-
-
+	
+		//Liri says something different:
+			console.log("~~~~~~~~~~~~~~~~~~~\nOne moment please, I have a surprise for you!\n~~~~~~~~~~~~~~~~~~~");
 		
-		console.log("do-what-it-says is coming soon!");
+		//Tell the program it'll need the fs package:
+			var fs = require("fs");
+
+		// Read the text file with the command and argument/search term. Search term has been recorded as a string.
+		// Liri then splits the two at the comma in between them and assigns variables to them.
+			fs.readFile("random.txt", "utf8", function(error, data) {
+				if (error) {
+					return console.log(error);
+				} else {
+					var dataArr = data.split(",");
+						
+					command = dataArr[0];
+					songName = dataArr[1];
+
+			//tell the program it's going to use the node-spotify-api npm package and what the spotify keys are:
+					var Spotify = require('node-spotify-api');
+					var spotify = new Spotify({
+					  id: 'cc506cc8bb1549ebb45087c755345d0a',
+					  secret: '5b4f1ed5c77945c8affabe9588c53702'
+					});
+			
+			// Run the Spotify search:			
+					spotify.search({ type: 'track', query: songName, limit: 1 }, function(err, data) {
+						
+					if (err) {
+						return console.log('Error occurred: ' + err);
+					}
+
+					if (!err){
+						// console for debugging
+						//console.log(artist);
+
+				//simplifying access to the data within the maze of objects and arrays returned by Spotify
+						var info = data.tracks.items[0];
+						var trackName = info.name;
+						var previewLink = info.external_urls.spotify;
+						var artist = info.artists[0].name; 
+						var album = info.album.name;
+
+
+				//Liri has her surprise:
+						console.log("----------------------------\nIt's a song!\n----------------------------");
+	
+				// Access and display information:
+						console.log("Name: " + trackName + "\nArtist: " + artist + "\nAlbum: " + album + "\nSpotify Link: " + previewLink); 
+					
+					}  //if (!err) end
+				
+					});// search function end
+				
+				}  //else end
+			
+			}); //fs.readFile end
+	
+	}  //do-what-it-says end
+
 
 		//********* do-what-it-says ends*********
-	}
-	
-
-	//  *************do-what-it-says begins**********
-	/*
-	function do-what-it-says() {
-		var fs = require("fs");
-
-		fs.readFile("best_things_ever.txt", "utf8", function(error, data) {
-			if (error) {
-				return console.log(error);
-			}
-			var dataArr = data.split(",");
-			for (var i = 0; i < dataArr.length; i++) {
-				console.log(dataArr[i]);
-			}
-		});
-	}*/
-
 
 }  // end liri(command) definition
+
+//Finally, we actually call the liri function:
 
 liri(command);	
